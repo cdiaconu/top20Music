@@ -81,7 +81,7 @@ ul.artist-list
     margin:0px;
 }
 
-li.artist 
+li.artist
 {
     list-style:none outside;
     border-top:1px solid rgb(223, 222, 222);

@@ -36,7 +36,7 @@
                 	</div>
             	</li>
 	       </g:each>
-       </ul>
+		</ul>
        
 	</div>
 </body>

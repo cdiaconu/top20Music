@@ -21,6 +21,21 @@
 			<div class="flashMessage" role="status">${flash.message}</div>
 		</g:if>
 		
+		<ul class="artist-list">
+       		<g:each in="${songs}" var="song" status="i">
+				<li class="artist">
+    	            <div class="artist-name">
+    	            	<g:message message="${song.name}"/>
+    	            </div>
+        	        <div class="artist-delete">
+            	        <g:link action="delete" id="${artist.id}">
+            	        	<img style="height:35px; width:35px" title="Delete Song" src="${resource(dir:'images',  file:'icon_delete.png')}"/>
+            	        </g:link>
+                	</div>
+            	</li>
+	       </g:each>
+		</ul>
+		
    	</div>
    	
 </body>

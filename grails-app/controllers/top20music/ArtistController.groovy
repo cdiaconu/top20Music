@@ -58,6 +58,6 @@ class ArtistController {
 			return
 		}
 		flash.message = "The artist was successfully updated!";
-		redirect(contoller: "song", action: "index", model: [id: artist.id])
+		redirect(controller: "song", action: "index", id: artist.id)
 	}
 }
