@@ -5,8 +5,17 @@ class TopSongDTO {
 	String songName
 	String artistFirstName
 	String artistLastName
-	long voteNo;
+	Long voteNo;
 
-    static constraints = {
-    }
+
+	static constraints = {
+	}
+
+	public Long getVoteNo() {
+		return voteNo == null ? 0l : voteNo;
+	}
+
+	public String getArtistLastName() {
+		return artistLastName == null ? "" : artistLastName;
+	}
 }

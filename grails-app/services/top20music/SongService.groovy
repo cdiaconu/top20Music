@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory
 import org.hibernate.criterion.Order
 import org.hibernate.criterion.Projections
 import org.hibernate.criterion.Restrictions
+import org.hibernate.sql.JoinType
 import org.hibernate.transform.Transformers
 import org.springframework.beans.factory.annotation.Autowired
 
@@ -23,8 +24,8 @@ class SongService {
 		Session session = sessionFactory.getCurrentSession();
 		Criteria songCriteria = session.createCriteria(Song.class, "song");
 		songCriteria.createAlias('song.artist', 'artist')
-		//JoinType left = JoinType.LEFT_OUTER_JOIN;
-		songCriteria.createAlias('song.vots', 'vote')
+		JoinType left = JoinType.LEFT_OUTER_JOIN;
+		songCriteria.createAlias('song.vots', 'vote', left)
 		songCriteria.setProjection(Projections
 				.projectionList()
 				.add(Projections.alias(Projections.groupProperty("song.id"),
@@ -39,23 +40,6 @@ class SongService {
 		List<TopSongDTO> topSongDTOs = songCriteria.list()
 
 		return topSongDTOs;
-		/*
-		 List<TopSongDTO> userList = Song.createCriteria().list {
-		 createAlias('artist', 'artist')
-		 createAlias("vots", "vote", JoinType.LEFT_OUTER_JOIN)
-		 setProjection(Projections
-		 .projectionList()
-		 .add(Projections.alias(Projections.groupProperty("song.id"),
-		 "id"))
-		 .add(Projections.alias(Projections.property("song.name"),
-		 "songName"))
-		 .add(Projections.alias(Projections.sum("vote.voteNo"),
-		 "voteNo"))
-		 )
-		 add(Restrictions.eq("artist.id", Long.valueOf(artistId)));
-		 addOrder(Order.asc("id")).setResultTransformer(Transformers.aliasToBean(TopSongDTO.class))
-		 }
-		 return userList*/
 	}
 
 	def vote(songId) {
