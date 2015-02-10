@@ -4,19 +4,21 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class SongController {
 
-	def index(int id){
-		Artist artistInstance = Artist.get(id);
+	def index(){
+		Artist artistInstance = Artist.get(params.id);
 
 		if (!artistInstance){
 			flash.message = "Unable to find artist!"
+			redirect(controller: "artist", action: "index")
+			return
 		}
-		println "${artistInstance}";
-		render(view: "index", model: [artist: artistInstance, songs: artistInstance.songs])
+
+		render(view: "index", model: [artist: artistInstance, songs: artistInstance.songs.toList()])
 	}
-	
-	def delete(Long id){
-		def song = Song.get(id);
-		
+
+	def delete(){
+		def song = Song.get(params.id);
+
 		if (!song){
 			flash.message = "Unable to delete song!"
 			redirect(view: "index")
@@ -25,11 +27,28 @@ class SongController {
 
 		try{
 			song.delete(flush: true);
-			flash.message = "The song was sucessfully deleted!"
+			flash.message = "The song was successfully deleted!"
 		}
 		catch (DataIntegrityViolationException e){
 			flash.message = "An error occured on deleting the song!"
 		}
-		render(view: "index", model: [artist: song.artist, songs: song.artist.songs])
+
+		redirect(action: "index", id: song.artist.id)
+	}
+
+	def save(){
+		def artistInstance = Artist.get(params.id)
+		def song = new Song(name: params.name)
+		artistInstance.addToSongs(song)
+
+		if (song.validate()) {
+			artistInstance.save(flush: true, failOnError: true)
+			chain(action: "index", id: params.id)
+			return;
+		}
+
+		if (song.errors.hasFieldErrors("name")) {
+			chain(action: "index", id: song.artist.id, model: [songErr: song])
+		}
 	}
 }

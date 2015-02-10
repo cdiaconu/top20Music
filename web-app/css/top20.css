@@ -15,8 +15,28 @@
 	text-align:center;
 }
 
-div.content 
-{
+div.home{
+	margin:auto;
+    width:825px;
+    height: 50px;
+    background-color: #eee;
+    border: 1px solid;
+    border-color: rgb(223, 222, 222);
+    border-radius: 3px 3px 0px 0px;
+    margin-bottom:20px;
+}
+.homePage {
+	padding:10px;
+    color: #23ba85;
+    font-size:20px;
+    font-family: Lato, sans-serif;
+    width:100%;
+    position:relative;
+    display:table-cell;
+    text-decoration: none;
+}
+
+div.content {
     margin:auto;
     width:825px;
     border: 1px solid;

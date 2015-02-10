@@ -2,7 +2,11 @@
 <html>
 <link rel="stylesheet" href="${resource(dir: 'css', file: 'top20.css')}" type="text/css">
 <body>
-		
+
+	<div class="home">
+		<g:link class="homePage" action="index" >Home</g:link>
+	</div>
+			
 	<div class="title-box">
         <h2 class="title-box_primary">List of <strong>artists</strong></h2>
    	</div>
