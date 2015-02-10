@@ -31,6 +31,8 @@
             </g:form>
         </div>
 	   	
+	   	<g:renderErrors bean="${songErr}" />
+	   	
 	   	<g:if test="${flash.message}">
 			<div class="flashMessage" role="status">${flash.message}</div>
 		</g:if>

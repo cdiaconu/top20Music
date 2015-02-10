@@ -40,7 +40,7 @@ class SongController {
 		def artistInstance = Artist.get(params.id)
 		def song = new Song(name: params.name)
 		artistInstance.addToSongs(song)
-
+		
 		if (song.validate()) {
 			artistInstance.save(flush: true, failOnError: true)
 			chain(action: "index", id: params.id)
@@ -48,7 +48,8 @@ class SongController {
 		}
 
 		if (song.errors.hasFieldErrors("name")) {
-			chain(action: "index", id: song.artist.id, model: [songErr: song])
+			//chain(action: "index", id: song.artist.id, model: [songErr: song])
+			render(view: "index", model: [songErr: song, artist: artistInstance, songs: Artist.get(params.id).songs.toList()])
 		}
 	}
 }
