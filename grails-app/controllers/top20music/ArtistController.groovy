@@ -18,7 +18,9 @@ class ArtistController {
 			return;
 		}
 
+		println artist.errors
 		if (artist.errors.hasFieldErrors("firstName")) {
+
 			chain(action: "index", model: [artistErr: artist])
 		}
 	}

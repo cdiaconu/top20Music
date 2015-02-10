@@ -21,7 +21,7 @@
 	      	 </g:form>
 	   	</div>
 	   	
-	   	<g:renderErrors bean="${artistErr}" />
+	   	<div class="errMessage"><g:renderErrors bean="${artistErr}" /></div>
 		
 	   	<g:if test="${flash.message}">
 			<div class="flashMessage" role="status">${flash.message}</div>
@@ -33,6 +33,17 @@
     	            <div class="artist-name">
     	            	<g:link controller="song" action="index" id="${artist.id}">${artist.firstName} ${artist.lastName} (${artist.songs.size()} songs)</g:link>
     	            </div>
+    	            
+    	            <div class="artist-delete">
+            	        <g:link action="delete" id="${artist.id}">
+            	        	<img style="height:35px; width:35px" title="Rate" src="${resource(dir:'images',  file:'icon_delete.png')}"/>
+            	        </g:link>
+                	</div>
+                	<div class="artist-delete">
+            	        <g:link action="delete" id="${artist.id}">
+            	        	<img style="height:35px; width:35px" title="Unrate" src="${resource(dir:'images',  file:'icon_delete.png')}"/>
+            	        </g:link>
+                	</div>
         	        <div class="artist-delete">
             	        <g:link action="delete" id="${artist.id}">
             	        	<img style="height:35px; width:35px" title="Delete Artist" src="${resource(dir:'images',  file:'icon_delete.png')}"/>

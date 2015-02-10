@@ -46,6 +46,10 @@ div.content {
 }
 
 
+.errMessage li {
+    list-style:none outside;
+}
+
 /* ARTISTS */
 .addNew {
     background-color:#eee;

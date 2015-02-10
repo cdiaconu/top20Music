@@ -2,8 +2,8 @@ package top20music
 
 class Song {
 	String name
-	int votes
 
+	static hasMany = [votes : VoteS]
 	static belongsTo = [artist : Artist]
 
 	static constraints = {
