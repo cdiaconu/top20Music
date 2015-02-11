@@ -1,3 +1,4 @@
+/DateUtils.class
 /asset/
 /dbdoc/
 /grails/
@@ -81,3 +82,7 @@
 /UrlMappings.class
 /resources$_run_closure1.class
 /resources.class
+/util/
+/SongController.class
+/dto/
+/TopController.class

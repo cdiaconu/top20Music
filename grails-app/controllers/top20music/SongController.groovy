@@ -3,6 +3,7 @@ package top20music
 import org.springframework.dao.DataIntegrityViolationException
 
 class SongController {
+	def songService
 
 	def index(){
 		Artist artistInstance = Artist.get(params.id);
@@ -38,9 +39,10 @@ class SongController {
 
 	def save(){
 		def artistInstance = Artist.get(params.id)
+		def originalSongs = artistInstance.songs.toList();
 		def song = new Song(name: params.name)
 		artistInstance.addToSongs(song)
-		
+
 		if (song.validate()) {
 			artistInstance.save(flush: true, failOnError: true)
 			chain(action: "index", id: params.id)
@@ -48,8 +50,16 @@ class SongController {
 		}
 
 		if (song.errors.hasFieldErrors("name")) {
-			//chain(action: "index", id: song.artist.id, model: [songErr: song])
-			render(view: "index", model: [songErr: song, artist: artistInstance, songs: Artist.get(params.id).songs.toList()])
+			render(view: "index", model: [songErr: song, artist: artistInstance, songs: originalSongs])
 		}
+	}
+
+	def votePositive(){
+		songService.vote(params.id)
+		def song = Song.get(params.id)
+		redirect(controller: "song", action: "index", id: song.artist.id)
+	}
+
+	def voteNegative(){
 	}
 }

@@ -5,6 +5,7 @@
 
 	<div class="home">
 		<g:link class="homePage" action="index" >Home</g:link>
+		<g:link controller="top" class="homePage" action="index" >Top music</g:link>
 	</div>
 			
 	<div class="title-box">
@@ -34,16 +35,6 @@
     	            	<g:link controller="song" action="index" id="${artist.id}">${artist.firstName} ${artist.lastName} (${artist.songs.size()} songs)</g:link>
     	            </div>
     	            
-    	            <div class="artist-delete">
-            	        <g:link action="delete" id="${artist.id}">
-            	        	<img style="height:35px; width:35px" title="Rate" src="${resource(dir:'images',  file:'icon_delete.png')}"/>
-            	        </g:link>
-                	</div>
-                	<div class="artist-delete">
-            	        <g:link action="delete" id="${artist.id}">
-            	        	<img style="height:35px; width:35px" title="Unrate" src="${resource(dir:'images',  file:'icon_delete.png')}"/>
-            	        </g:link>
-                	</div>
         	        <div class="artist-delete">
             	        <g:link action="delete" id="${artist.id}">
             	        	<img style="height:35px; width:35px" title="Delete Artist" src="${resource(dir:'images',  file:'icon_delete.png')}"/>

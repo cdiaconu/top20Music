@@ -5,6 +5,7 @@
 		
 	<div class="home">
 		<g:link controller="artist" class="homePage" action="index" >Home</g:link>
+		<g:link controller="top" class="homePage" action="index" >Top music</g:link>
 	</div>
 	
 	<div class="title-box">
@@ -41,28 +42,22 @@
        		<g:each in="${songs}" var="song" status="i">
 				<li class="artist">
     	            <div class="artist-name">
-    	            	<g:message message="${song.name}"/>
+    	            	<g:message message="${song.name} (${song.vots.size()} votes)"/>
     	            </div>
     	            
     	            
     	            <div class="artist-delete">
-            	        <g:link id="${song.id}">
+            	        <g:link action="votePositive" id="${song.id}">
             	        	<img style="height:35px; width:35px" title="Rate" src="${resource(dir:'images',  file:'icon_edit.png')}"/>
             	        </g:link>
                 	</div>
                 	
                 	<div class="artist-delete">
-            	        <g:link id="${song.id}">
+            	        <g:link action="voteNegative" id="${song.id}">
             	        	<img style="height:35px; width:35px" title="Unrate" src="${resource(dir:'images',  file:'icon_edit.png')}"/>
             	        </g:link>
                 	</div>
                 	
-    	            <div class="artist-delete">
-            	        <g:link id="${song.id}">
-            	        	<img style="height:35px; width:35px" title="Edit song" src="${resource(dir:'images',  file:'icon_edit.png')}"/>
-            	        </g:link>
-                	</div>
-    	            
         	        <div class="artist-delete">
             	        <g:link action="delete" id="${song.id}">
             	        	<img style="height:35px; width:35px" title="Delete song" src="${resource(dir:'images',  file:'icon_delete.png')}"/>
