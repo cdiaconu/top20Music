@@ -13,20 +13,37 @@
    	
    	<div class="tops-content">
    		<ul class="tops">
+   			
+   			<li class="top">
+   	            <div class="top-title-box">
+   	            	<h3 class="top-title">Top <strong>artists</strong></h3>
+   	            </div>
+   	            
+   	            <g:each in="${topArtists}" var="entry" status="i">
+   	            	<ol class="top">
+   	            		 <li>
+   	            		 	<g:message message="${entry.artistFirstName} ${entry.artistLastName} (${entry.voteNo} votes)"/>
+   	            		 </li>
+   	            	</ol>
+   	            </g:each>
+           	</li>
+           	
 			<li class="top">
    	            <div class="top-title-box">
    	            	<h3 class="top-title">Top <strong>songs</strong></h3>
    	            </div>
    	            
-   	            <g:message message="${topSongs} "/>
-   	            
-   	            
    	            <g:each in="${topSongs}" var="entry" status="i">
    	            	<ol class="top">
-   	            		 <li><g:message message="${entry.songName} (${entry.voteNo} votes)"/></li>
+   	            		 <li>
+   	            		 	<g:message message="${entry.songName}"/>
+   	            		 	<span><g:message message="by ${entry.artistFirstName} ${entry.artistLastName}(${entry.voteNo} votes)"/></span>
+   	            		 </li>
    	            	</ol>
    	            </g:each>
            	</li>
+           	
+           	<g:select name="votedWeek" from="${votedWeeks}" />
 		</ul>
 	</div>
 	

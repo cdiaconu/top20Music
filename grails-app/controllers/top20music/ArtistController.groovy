@@ -10,7 +10,8 @@ class ArtistController {
 	}
 
 	def save(){
-		def artist = new Artist(params)
+		def artist = new Artist()
+		bindData(artist, params, [include: ['firstName', 'lastName']])
 
 		if (artist.validate()) {
 			artist.save()
@@ -18,16 +19,14 @@ class ArtistController {
 			return;
 		}
 
-		println artist.errors
 		if (artist.errors.hasFieldErrors("firstName")) {
-
 			chain(action: "index", model: [artistErr: artist])
 		}
 	}
 
 	def delete(){
 		def artist = Artist.get(params.id);
-		
+
 		if (!artist){
 			flash.message = "Unable to delete the artist!"
 			redirect(view: "index")
@@ -43,16 +42,16 @@ class ArtistController {
 		}
 		redirect(view: "index")
 	}
-	
+
 	def update(){
 		Artist artist = Artist.get(params.id)
-		
+
 		if (!artist){
 			flash.message = "Unable to update the artist! Artist not found!"
 			redirect(view: "index")
 			return
 		}
-		
+
 		artist.properties = params
 		if (!artist.save(flush: true)) {
 			redirect(view: "index")

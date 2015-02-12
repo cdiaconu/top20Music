@@ -1,4 +1,3 @@
-/DateUtils.class
 /asset/
 /dbdoc/
 /grails/
@@ -9,6 +8,7 @@
 /spring/
 /top20music/
 /uglifyjs/
+/util/
 /AssetPipelineBootStrap$_closure1.class
 /AssetPipelineBootStrap.class
 /AssetUrlMappings$__clinit__closure1.class
@@ -82,7 +82,5 @@
 /UrlMappings.class
 /resources$_run_closure1.class
 /resources.class
-/util/
-/SongController.class
-/dto/
-/TopController.class
+/TopService.class
+/SongService.class

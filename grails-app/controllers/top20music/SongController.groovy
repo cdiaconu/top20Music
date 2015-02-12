@@ -14,7 +14,7 @@ class SongController {
 			return
 		}
 
-		render(view: "index", model: [artist: artistInstance, songs: artistInstance.songs.toList()])
+		render(view: "index", model: [artist: artistInstance, songs: songService.getSongs(params.id)])
 	}
 
 	def delete(){
@@ -58,8 +58,5 @@ class SongController {
 		songService.vote(params.id)
 		def song = Song.get(params.id)
 		redirect(controller: "song", action: "index", id: song.artist.id)
-	}
-
-	def voteNegative(){
 	}
 }

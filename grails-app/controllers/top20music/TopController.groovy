@@ -4,8 +4,10 @@ class TopController {
 	def topService;
 
 	def index() {
-		def topSongDTOs = topService.getTop5PopularSongs();
+		def topSongs = topService.getTop5PopularSongs()
+		def topArtists = topService.getTop5PopularArtist()
+		def votedWeeks = topService.getAllVotedWeeks()
 
-		render(view: "top", model: [topSongs: topSongDTOs])
+		render(view: "index", model: [topSongs: topSongs, topArtists : topArtists, votedWeeks : votedWeeks])
 	}
 }

@@ -1,10 +1,14 @@
 package util;
 
-
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class DateUtils {
+
+	private static final String DATE_FORMAT = "dd/MM/yyyy";
 
 	public static boolean areEquals(Date date1, Date date2) {
 
@@ -22,7 +26,16 @@ public class DateUtils {
 	public static Date getMondayThisWeek() {
 		Calendar c = Calendar.getInstance();
 		c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-		return c.getTime();
+		return format(c.getTime());
 	}
 
+	private static Date format(Date date) {
+		DateFormat df = new SimpleDateFormat(DATE_FORMAT);
+		try {
+			return df.parse(df.format(date));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return date;
+	}
 }

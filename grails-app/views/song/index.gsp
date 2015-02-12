@@ -42,7 +42,7 @@
        		<g:each in="${songs}" var="song" status="i">
 				<li class="artist">
     	            <div class="artist-name">
-    	            	<g:message message="${song.name} (${song.vots.size()} votes)"/>
+    	            	<g:message message="${song.songName} (${song.voteNo} votes)"/>
     	            </div>
     	            
     	            
