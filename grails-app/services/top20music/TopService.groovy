@@ -6,14 +6,14 @@ import org.hibernate.criterion.Order
 import org.hibernate.transform.Transformers
 
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-
 import grails.transaction.Transactional
+
+import java.util.concurrent.TimeUnit
 
 import org.hibernate.Criteria
 import org.hibernate.Session
 import org.hibernate.SessionFactory
+import org.hibernate.criterion.Conjunction
 import org.hibernate.criterion.Order
 import org.hibernate.criterion.Projections
 import org.hibernate.criterion.Restrictions
@@ -79,12 +79,13 @@ class TopService {
 		voteCriteria.setProjection(Projections
 				.projectionList()
 				.add(Projections.alias(Projections.groupProperty("vote.firstDayOfTheWeek"),
-				"first_day_of_the_week")))
+				"week")))
+		voteCriteria.addOrder(Order.desc("week")).setResultTransformer(Transformers.aliasToBean(VoteWeekDto.class))
 
 		return voteCriteria.list()
 	}
 
-	def getSongsForWeek(String firstDayOfTheWeek){
+	def getSongsForWeek(Date monday){
 		Session session = sessionFactory.getCurrentSession();
 
 		Criteria songCriteria = session.createCriteria(Song.class, "song");
@@ -101,8 +102,14 @@ class TopService {
 				.add(Projections.alias(Projections.sum("vote.voteNo"),
 				"voteNo"))
 				)
-		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-		songCriteria.add(Restrictions.eq("vote.firstDayOfTheWeek", df.parse("firstDayOfTheWeek")));
+
+		Date minDate = monday;
+		Date maxDate = new Date(minDate.getTime() + TimeUnit.DAYS.toMillis(1));
+		Conjunction and = Restrictions.conjunction();
+		and.add( Restrictions.ge("vote.firstDayOfTheWeek", minDate) );
+		and.add( Restrictions.lt("vote.firstDayOfTheWeek", maxDate) );
+
+		songCriteria.add(and);
 		songCriteria.addOrder(Order.desc("voteNo")).setMaxResults(5).setResultTransformer(Transformers.aliasToBean(TopSongDTO.class))
 		List<TopSongDTO> topSongDTOs = songCriteria.list()
 

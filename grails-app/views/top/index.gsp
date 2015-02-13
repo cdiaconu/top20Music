@@ -43,7 +43,22 @@
    	            </g:each>
            	</li>
            	
-           	<g:select name="votedWeek" from="${votedWeeks}" />
+           	<li class="top">
+   	            <div class="top-title-box">
+   	            	<g:set var="format" value="${new java.text.SimpleDateFormat('yyyy-MM-dd')}"/>
+   	            	<h3 class="top-title">Top <strong>songs</strong> for week <g:formatDate format="yyyy-MM-dd" date="${lastMonday}"/></h3>
+   	            </div>
+   	            
+   	            <g:each in="${topSongsByWeek}" var="entry" status="i">
+   	            	<ol class="top">
+   	            		 <li>
+   	            		 	<g:message message="${entry.songName}"/>
+   	            		 	<span><g:message message="by ${entry.artistFirstName} ${entry.artistLastName}(${entry.voteNo} votes)"/></span>
+   	            		 </li>
+   	            	</ol>
+   	            </g:each>
+           	</li>
+           	
 		</ul>
 	</div>
 	

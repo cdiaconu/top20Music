@@ -1,14 +1,19 @@
 package top20music
 
+import util.DateUtils;
+
 class TopController {
 	def topService;
 
 	def index() {
+		println "params: " + params
 		def topSongs = topService.getSongs()
 		def topArtists = topService.getArtists()
 		def votedWeeks = topService.getVotedWeeks()
-		//def topSongsByWeek = topService.getSongsForWeek("2015-02-09 00:00:00.0")
+		
+		Date lastMonday = DateUtils.getMondayLastWeek()
+		def topSongsByWeek = topService.getSongsForWeek(lastMonday)
 
-		render(view: "index", model: [topSongs: topSongs, topArtists : topArtists, votedWeeks : votedWeeks])
+		render(view: "index", model: [topSongs: topSongs, topArtists : topArtists, votedWeeks : votedWeeks, lastMonday: lastMonday, topSongsByWeek : topSongsByWeek])
 	}
 }

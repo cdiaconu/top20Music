@@ -13,6 +13,15 @@ class ArtistController {
 		def artist = new Artist()
 		bindData(artist, params, [include: ['firstName', 'lastName']])
 
+		def artists = Artist.list();
+		for (Artist a : artists){
+			if (a.firstName.equals(params.firstName) && a.lastName.equals(params.lastName)){
+				flash.message =  "The artist " + params.firstName + " already exists!"
+				chain(action: "index")
+				return
+			}
+		}
+
 		if (artist.validate()) {
 			artist.save()
 			redirect(view: "index")

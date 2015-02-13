@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class DateUtils {
 
-	private static final String DATE_FORMAT = "dd/MM/yyyy";
+	private static final String DATE_FORMAT = "yyyy-MM-dd";
 
 	public static boolean areEquals(Date date1, Date date2) {
 
@@ -26,6 +26,13 @@ public class DateUtils {
 	public static Date getMondayThisWeek() {
 		Calendar c = Calendar.getInstance();
 		c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+		return format(c.getTime());
+	}
+	
+	public static Date getMondayLastWeek() {
+		Calendar c = Calendar.getInstance();
+		c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+		c.add(Calendar.DAY_OF_WEEK, -7);
 		return format(c.getTime());
 	}
 

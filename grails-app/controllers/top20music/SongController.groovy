@@ -40,6 +40,14 @@ class SongController {
 	def save(){
 		def artistInstance = Artist.get(params.id)
 		def originalSongs = artistInstance.songs.toList();
+		
+		for (Song s : originalSongs){
+			if (s.name.equals(params.name)){
+				flash.message = "The song " + params.name + " already exists!"
+				chain(action: "index", id: params.id)
+				return;
+			}
+		}
 		def song = new Song(name: params.name)
 		artistInstance.addToSongs(song)
 

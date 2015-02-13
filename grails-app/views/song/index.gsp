@@ -4,7 +4,7 @@
 <body>
 		
 	<div class="home">
-		<g:link class="homePage" action="index" >Home</g:link>&nbsp;|&nbsp;
+		<g:link class="homePage" controller="artist" action="index" >Home</g:link>&nbsp;|&nbsp;
 		<g:link class="homePage" controller="top" action="index" >Top music</g:link>
 	</div>
 	
