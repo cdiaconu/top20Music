@@ -6,7 +6,7 @@ class ArtistController {
 
 	def index() {
 		def artists = Artist.list();
-		render(view: "index", model: [artists : artists])
+		[artists : artists]
 	}
 
 	def save(){
@@ -17,19 +17,19 @@ class ArtistController {
 		for (Artist a : artists){
 			if (a.firstName.equals(params.firstName) && a.lastName.equals(params.lastName)){
 				flash.message =  "The artist " + params.firstName + " already exists!"
-				render(view: "index", model: [artists : Artist.list()])
+				chain(action: "index")
 				return
 			}
 		}
 
 		if (artist.validate()) {
 			artist.save()
-			render(view: "index", model: [artists : Artist.list()])
+			redirect(view: "index")
 			return;
 		}
 
 		if (artist.errors.hasFieldErrors("firstName")) {
-			render(view: "index", model: [artistErr: artist, artists : Artist.list()])
+			chain(action: "index", model: [artistErr: artist])
 		}
 	}
 
