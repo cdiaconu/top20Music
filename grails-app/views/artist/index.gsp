@@ -4,8 +4,8 @@
 <body>
 
 	<div class="home">
-		<g:link class="homePage" action="index" >Home</g:link>
-		<g:link controller="top" class="homePage" action="index" >Top music</g:link>
+		<g:link class="homePage" action="index" >Home</g:link>&nbsp;|&nbsp;
+		<g:link class="homePage" controller="top" action="index" >Top music</g:link>
 	</div>
 			
 	<div class="title-box">

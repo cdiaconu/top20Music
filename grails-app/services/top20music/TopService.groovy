@@ -33,5 +33,30 @@ class TopService {
 		println "songs"
 
 		return topSongDTOs
+		
+		/*
+		select s.name, a.first_name, a.last_name, sum(v.vote_no) as count
+		from song s
+		 join artist a on a.id = s.artist_id
+		 join vote v on s.id = v.song_id
+		group by s.name, a.first_name, a.last_name
+		order by count desc
+		*/
+		
+		
+		/*select a.first_name, a.last_name, sum(v.vote_no) as count
+		from song s
+		 join artist a on a.id = s.artist_id
+		 join vote v on s.id = v.song_id
+		group by a.first_name, a.last_name
+		order by count desc*/
+		
+		/*select s.name, a.first_name, a.last_name, sum(v.vote_no) as count
+		from song s
+		 join artist a on a.id = s.artist_id
+		 join vote v on s.id = v.song_id
+where v.first_day_of_the_week = '2015-02-09'
+		group by s.name, a.first_name, a.last_name
+		order by count desc*/
 	}
 }

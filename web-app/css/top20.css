@@ -24,16 +24,17 @@ div.home{
     border-color: rgb(223, 222, 222);
     border-radius: 3px 3px 0px 0px;
     margin-bottom:20px;
+    font-size:20px;
+    font-family: Lato, sans-serif;
+    color: #23ba85;
+    padding-top: 10px;
 }
 .homePage {
 	padding:10px;
-    color: #23ba85;
-    font-size:20px;
-    font-family: Lato, sans-serif;
     width:100%;
-    position:relative;
-    display:table-cell;
     text-decoration: none;
+    color: #23ba85;
+    padding-left: 10px;
 }
 
 div.content {
