@@ -6,7 +6,6 @@ class TopController {
 	def topService;
 
 	def index() {
-		println "params: " + params
 		def topSongs = topService.getSongs()
 		def topArtists = topService.getArtists()
 		def votedWeeks = topService.getVotedWeeks()
