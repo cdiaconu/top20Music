@@ -4,9 +4,10 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class SongController {
 	def songService
+	def artistService
 
 	def index(){
-		Artist artistInstance = Artist.get(params.id);
+		def artistInstance = artistService.getArtist(params.id)
 
 		if (!artistInstance){
 			flash.message = "Unable to find artist!"
@@ -18,7 +19,7 @@ class SongController {
 	}
 
 	def delete(){
-		def song = Song.get(params.id);
+		def song = songService.getSong(params.id)
 
 		if (!song){
 			flash.message = "Unable to delete song!"
@@ -40,7 +41,7 @@ class SongController {
 	def save(){
 		def artistInstance = Artist.get(params.id)
 		def originalSongs = artistInstance.songs.toList();
-		
+
 		for (Song s : originalSongs){
 			if (s.name.equals(params.name)){
 				flash.message = "The song " + params.name + " already exists!"
@@ -58,11 +59,12 @@ class SongController {
 		}
 
 		if (song.errors.hasFieldErrors("name")) {
-			render(view: "index", model: [songErr: song, artist: artistInstance, songs: originalSongs])
+			flash.message = "Song name could not be blank!"
+			redirect(action: "index", id: params.id)
 		}
 	}
 
-	def votePositive(){
+	def vote(){
 		songService.vote(params.id)
 		def song = Song.get(params.id)
 		redirect(controller: "song", action: "index", id: song.artist.id)

@@ -204,7 +204,10 @@ li.top
 	zoom:1;
 	border-bottom: 1px solid rgb(223, 222, 222);
 }
-
+ol.top 
+{
+	list-style-type: none
+}
 ol.top li 
 {
     padding:5px;

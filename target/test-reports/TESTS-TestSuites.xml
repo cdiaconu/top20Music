@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+  <testsuite errors="0" failures="0" hostname="C3700100528" id="0" name="ArtistControllerSpec" package="top20music" tests="3" time="5.217" timestamp="2015-02-17T09:55:47">
+      <properties />
+
+      <testcase classname="top20music.ArtistControllerSpec" name="test_index" time="4.892" />
+
+      <testcase classname="top20music.ArtistControllerSpec" name="test_save_artist_already_exists" time="0.095" />
+
+      <testcase classname="top20music.ArtistControllerSpec" name="test_save_success" time="0.173" />
+
+      <system-out><![CDATA[--Output from test_index--
+--Output from test_save_artist_already_exists--
+--Output from test_save_success--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from test_index--
+--Output from test_save_artist_already_exists--
+--Output from test_save_success--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="C3700100528" id="1" name="ArtistSpec" package="top20music" tests="1" time="0.326" timestamp="2015-02-17T09:55:53">
+      <properties />
+
+      <testcase classname="top20music.ArtistSpec" name="test_first_name_not_blank" time="0.311" />
+
+      <system-out><![CDATA[--Output from test_first_name_not_blank--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from test_first_name_not_blank--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="1" failures="1" hostname="C3700100528" id="2" name="SongControllerSpec" package="top20music" tests="2" time="0.618" timestamp="2015-02-17T09:55:53">
+      <properties />
+
+      <testcase classname="top20music.SongControllerSpec" name="test_index" time="0.445">
+          <failure message="Condition not satisfied:&#xa;&#xa;model.artist == artist&#xa;|     |      |  |&#xa;|     |      |  top20music.Artist : (unsaved)&#xa;|     |      false&#xa;|     top20music.SongControllerSpec$_$spock_feature_0_0_closure1@29c3844b&#xa;[artist:top20music.SongControllerSpec$_$spock_feature_0_0_closure1@29c3844b, songs:top20music.SongControllerSpec$_$spock_feature_0_0_closure2@63226d58]&#xa;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Condition not satisfied:
+
+model.artist == artist
+|     |      |  |
+|     |      |  top20music.Artist : (unsaved)
+|     |      false
+|     top20music.SongControllerSpec$_$spock_feature_0_0_closure1@29c3844b
+[artist:top20music.SongControllerSpec$_$spock_feature_0_0_closure1@29c3844b, songs:top20music.SongControllerSpec$_$spock_feature_0_0_closure2@63226d58]
+
+	at top20music.SongControllerSpec.test_index(SongControllerSpec.groovy:36)
+</failure>
+
+      </testcase>
+
+      <testcase classname="top20music.SongControllerSpec" name="test_delete" time="0.156">
+          <error message="No signature of method: top20music.SongControllerSpec.delete() is applicable for argument types: (java.util.LinkedHashMap) values: [[flush:true]]&#xa;Possible solutions: every(), sleep(long), getAt(java.lang.String), every(groovy.lang.Closure), split(groovy.lang.Closure)" type="groovy.lang.MissingMethodException">groovy.lang.MissingMethodException: No signature of method: top20music.SongControllerSpec.delete() is applicable for argument types: (java.util.LinkedHashMap) values: [[flush:true]]
+Possible solutions: every(), sleep(long), getAt(java.lang.String), every(groovy.lang.Closure), split(groovy.lang.Closure)
+	at top20music.SongController.delete(SongController.groovy:31)
+	at top20music.SongControllerSpec.test_delete(SongControllerSpec.groovy:47)
+</error>
+
+      </testcase>
+
+      <system-out><![CDATA[--Output from test_index--
+--Output from test_delete--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from test_index--
+--Output from test_delete--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="C3700100528" id="3" name="SongSpec" package="top20music" tests="2" time="0.346" timestamp="2015-02-17T09:55:54">
+      <properties />
+
+      <testcase classname="top20music.SongSpec" name="test_song_name_not_blank" time="0.268" />
+
+      <testcase classname="top20music.SongSpec" name="test_song_no_artist" time="0.067" />
+
+      <system-out><![CDATA[--Output from test_song_name_not_blank--
+--Output from test_song_no_artist--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from test_song_name_not_blank--
+--Output from test_song_no_artist--
+]]></system-err>
+
+  </testsuite>
+</testsuites>

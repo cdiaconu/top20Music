@@ -1,3 +1,4 @@
+
 package top20music
 
 import grails.test.mixin.TestFor
@@ -9,12 +10,15 @@ import spock.lang.Specification
 @TestFor(Artist)
 class ArtistSpec extends Specification {
 
-    def setup() {
-    }
+	def "test_first_name_not_blank"() {
+		setup:
+		mockForConstraintsTests(Artist)
 
-    def cleanup() {
-    }
+		when:
+		def artist = new Artist(firstName : "", lastName : "A")
+		artist.validate()
 
-    void "test something"() {
-    }
+		then:
+		assertTrue artist.errors.hasFieldErrors("firstName")
+	}
 }

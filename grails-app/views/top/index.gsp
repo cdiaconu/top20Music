@@ -22,6 +22,7 @@
    	            <g:each in="${topArtists}" var="entry" status="i">
    	            	<ol class="top">
    	            		 <li>
+   	            		 	<g:message message="${i+1}."/>
    	            		 	<g:message message="${entry.artistFirstName} ${entry.artistLastName} (${entry.voteNo} votes)"/>
    	            		 </li>
    	            	</ol>
@@ -36,6 +37,7 @@
    	            <g:each in="${topSongs}" var="entry" status="i">
    	            	<ol class="top">
    	            		 <li>
+   	            			<g:message message="${i+1}."/>
    	            		 	<g:message message="${entry.songName}"/>
    	            		 	<span><g:message message="by ${entry.artistFirstName} ${entry.artistLastName}(${entry.voteNo} votes)"/></span>
    	            		 </li>
@@ -52,6 +54,7 @@
    	            <g:each in="${topSongsByWeek}" var="entry" status="i">
    	            	<ol class="top">
    	            		 <li>
+   	            		 	<g:message message="${i+1}."/>
    	            		 	<g:message message="${entry.songName}"/>
    	            		 	<span><g:message message="by ${entry.artistFirstName} ${entry.artistLastName}(${entry.voteNo} votes)"/></span>
    	            		 </li>

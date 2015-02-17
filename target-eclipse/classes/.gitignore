@@ -1,13 +1,5 @@
-/asset/
-/dbdoc/
 /grails/
-/hibernate/
-/hibernate.cfg.xml
-/javascripts/
 /org/
-/spring/
-/top20music/
-/uglifyjs/
 /util/
 /AssetPipelineBootStrap$_closure1.class
 /AssetPipelineBootStrap.class
@@ -80,7 +72,7 @@
 /UrlMappings$__clinit__closure1_closure2.class
 /UrlMappings$__clinit__closure1_closure2_closure3.class
 /UrlMappings.class
+/asset/
 /resources$_run_closure1.class
 /resources.class
-/TopService.class
-/SongService.class
+/top20music/

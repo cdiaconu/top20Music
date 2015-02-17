@@ -7,5 +7,7 @@ class Song {
 	static hasMany = [vots: Vote]
 	static belongsTo = [artist: Artist]
 
-	static constraints = {  }
+	static constraints = {  
+		 name blank: false, nullable: false
+	}
 }

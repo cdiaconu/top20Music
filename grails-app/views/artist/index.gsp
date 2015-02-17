@@ -32,7 +32,7 @@
        		<g:each in="${artists}" var="artist" status="i">
 	            <li class="artist">
     	            <div class="artist-name">
-    	            	<g:link controller="song" action="index" id="${artist.id}">${artist.firstName} ${artist.lastName} (${artist.songs.size()} songs)</g:link>
+    	            	<g:link controller="song" action="index" id="${artist.id}">${artist.firstName} ${artist.lastName} (${artist.songs?.size() ?: '0'} songs)</g:link>
     	            </div>
     	            
         	        <div class="artist-delete">

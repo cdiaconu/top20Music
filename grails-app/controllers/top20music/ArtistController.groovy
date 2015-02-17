@@ -4,32 +4,34 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class ArtistController {
 
+	def artistService
+
 	def index() {
-		def artists = Artist.list();
-		[artists : artists]
+		def artists = artistService.list();
+		render(view: "index", model: [artists : artists])
 	}
 
 	def save(){
-		def artist = new Artist()
-		bindData(artist, params, [include: ['firstName', 'lastName']])
-
-		def artists = Artist.list();
+		def artists = artistService.list();
 		for (Artist a : artists){
 			if (a.firstName.equals(params.firstName) && a.lastName.equals(params.lastName)){
 				flash.message =  "The artist " + params.firstName + " already exists!"
-				chain(action: "index")
+				render(view: "index", model: [artists : artists])
 				return
 			}
 		}
 
+		def artist = new Artist()
+		bindData(artist, params, [include: ['firstName', 'lastName']])
+		
 		if (artist.validate()) {
 			artist.save()
-			redirect(view: "index")
+			render(view: "index", model: [artists : artistService.list()])
 			return;
 		}
 
 		if (artist.errors.hasFieldErrors("firstName")) {
-			chain(action: "index", model: [artistErr: artist])
+			render(view: "index", model: [artistErr: artist, artists : artists])
 		}
 	}
 

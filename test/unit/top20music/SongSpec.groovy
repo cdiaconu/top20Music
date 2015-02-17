@@ -9,12 +9,28 @@ import spock.lang.Specification
 @TestFor(Song)
 class SongSpec extends Specification {
 
-    def setup() {
-    }
+	def "test_song_name_not_blank"() {
+		setup:
+		mockForConstraintsTests(Song)
+		mockDomain(Artist)
 
-    def cleanup() {
-    }
+		when:
+		def song = new Song(name:'', artist: new Artist(firstName: "A"));
+		song.validate()
 
-    void "test something"() {
-    }
+		then:
+		assertTrue song.errors.hasFieldErrors("name")
+	}
+
+	def "test_song_no_artist"() {
+		setup:
+		mockForConstraintsTests(Song)
+
+		when:
+		def song = new Song(name:'', artist: null);
+		song.validate()
+
+		then:
+		assertTrue song.errors.hasFieldErrors("artist")
+	}
 }

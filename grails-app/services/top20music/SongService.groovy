@@ -20,6 +20,10 @@ class SongService {
 	@Autowired
 	SessionFactory sessionFactory;
 
+	def getSong(def songId){
+		return Song.get(songId)
+	}
+
 	def getSongs(def artistId){
 		Session session = sessionFactory.getCurrentSession();
 		Criteria songCriteria = session.createCriteria(Song.class, "song");
@@ -75,23 +79,5 @@ class SongService {
 		}
 
 		return new Vote(voteNo: 1, firstDayOfTheWeek: monday)
-	}
-
-	def getVotesForCurrentWeek(songId){
-		def vots = Song.get(songId).vots
-
-		Date monday = DateUtils.getMondayThisWeek()
-		if (vots.isEmpty()){
-			return 0
-		}
-
-		for (Vote vot : vots){
-			Date date = vot.firstDayOfTheWeek
-			if (DateUtils.areEquals(date, monday)){
-				return vot.voteNo;
-			}
-		}
-
-		return 0;
 	}
 }

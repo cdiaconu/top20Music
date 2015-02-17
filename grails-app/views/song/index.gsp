@@ -45,9 +45,8 @@
     	            	<g:message message="${song.songName} (${song.voteNo} votes)"/>
     	            </div>
     	            
-    	            
     	            <div class="artist-delete">
-            	        <g:link action="votePositive" id="${song.id}">
+            	        <g:link action="vote" id="${song.id}">
             	        	<img style="height:35px; width:35px" title="Rate" src="${resource(dir:'images',  file:'icon_vote.png')}"/>
             	        </g:link>
                 	</div>
