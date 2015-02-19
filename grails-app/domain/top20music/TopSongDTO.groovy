@@ -7,7 +7,6 @@ class TopSongDTO {
 	String artistLastName
 	Long voteNo;
 
-
 	static constraints = {
 	}
 

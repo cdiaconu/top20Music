@@ -49,35 +49,11 @@ class SongService {
 	def vote(songId) {
 
 		def song = Song.get(songId)
-		def vote = getVoteInstance(songId)
+		def vote = new Vote(voteNo: 1, voteDate: new Date())
 		song.addToVots(vote)
 
 		if (vote.validate()){
 			song.save(flush: true, failOnError: true)
 		}
-	}
-
-	def getVoteInstance(songId){
-		def vots = Song.get(songId).vots
-
-		Date monday = DateUtils.getMondayThisWeek()
-
-		println "monday:" + monday
-
-		if (vots.isEmpty()){
-			// no votes exist for this song
-			return new Vote(voteNo: 1, firstDayOfTheWeek: monday)
-		}
-
-
-		for (Vote vot : vots){
-			Date date = vot.firstDayOfTheWeek
-			if (DateUtils.areEquals(date, monday)){
-				vot.voteNo ++
-				return vot
-			}
-		}
-
-		return new Vote(voteNo: 1, firstDayOfTheWeek: monday)
 	}
 }

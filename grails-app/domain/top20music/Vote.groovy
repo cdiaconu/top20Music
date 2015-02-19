@@ -3,7 +3,7 @@ package top20music
 class Vote {
 
 	int voteNo
-	Date firstDayOfTheWeek
+	Date voteDate
 
 	static belongsTo = [song: Song]
 

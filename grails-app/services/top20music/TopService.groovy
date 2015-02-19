@@ -85,7 +85,7 @@ class TopService {
 		return voteCriteria.list()
 	}
 
-	def getSongsForWeek(Date monday){
+	def getSongsForPeriod(Date date1, Date date2){
 		Session session = sessionFactory.getCurrentSession();
 
 		Criteria songCriteria = session.createCriteria(Song.class, "song");
@@ -103,11 +103,10 @@ class TopService {
 				"voteNo"))
 				)
 
-		Date minDate = monday;
-		Date maxDate = new Date(minDate.getTime() + TimeUnit.DAYS.toMillis(1));
+		Date maxDate = new Date(date2.getTime() + TimeUnit.DAYS.toMillis(1));
 		Conjunction and = Restrictions.conjunction();
-		and.add( Restrictions.ge("vote.firstDayOfTheWeek", minDate) );
-		and.add( Restrictions.lt("vote.firstDayOfTheWeek", maxDate) );
+		and.add( Restrictions.ge("vote.voteDate", date1) );
+		and.add( Restrictions.lt("vote.voteDate", maxDate) );
 
 		songCriteria.add(and);
 		songCriteria.addOrder(Order.desc("voteNo")).setMaxResults(5).setResultTransformer(Transformers.aliasToBean(TopSongDTO.class))
